@@ -1,0 +1,70 @@
+<svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="Logo-with-id">
+        <g id="red-circle">
+            <path id="Ellipse 69" d="M50.35 47.1062C45.3055 53.0661 37.7696 56.85 29.35 56.85" stroke="#C1281E" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 69_2" d="M16.35 5.11069C7.71837 9.7497 1.84998 18.8645 1.84998 29.35C1.84998 31.9501 2.21081 34.4659 2.88514 36.85" stroke="#C1281E" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 69_3" d="M32.85 2.07065C39.2611 2.88501 44.9833 5.90673 49.2309 10.35" stroke="#C1281E" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 69_4" d="M16.35 5.11068C20.2209 3.03025 24.6476 1.85001 29.35 1.85001C30.5357 1.85001 31.7038 1.92504 32.85 2.07063" stroke="#971F17" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 69_5" d="M29.35 56.85C16.7622 56.85 6.14978 48.3925 2.88513 36.85" stroke="#971F17" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 69_6" d="M1.33728 1.27838C6.05724 6.2158 8.95632 12.9085 8.95632 20.2784C8.95632 27.0465 6.51129 33.2436 2.45632 38.0346" stroke="#C1281E" stroke-opacity="0" stroke-width="3.7"/>
+            <animateTransform
+                attributeName="transform"
+                begin="0s"
+                dur="5s"
+                type="rotate"
+                from="0 29.5 29.5"
+                to="360 29.5 29.5"
+                repeatCount="indefinite"
+            />
+        </g>
+        <g id="yellow-circle">
+            <path id="Ellipse 70" d="M46.476 42.35C49.2208 38.7397 50.85 34.2351 50.85 29.35C50.85 22.9824 48.0819 17.2614 43.6833 13.3246" stroke="#F5C000" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 70_2" d="M7.84998 29.35C7.84998 17.4759 17.4759 7.85001 29.35 7.85001" stroke="#F5C000" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 70_3" d="M18.389 47.85C12.0792 44.1035 7.84998 37.2206 7.84998 29.35" stroke="#D5A700" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 70_4" d="M29.35 7.85001C34.8565 7.85001 39.8796 9.92012 43.6833 13.3246" stroke="#D5A700" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 70_5" d="M29.0314 1.11963C25.1046 6.28482 18.8945 9.61961 11.9054 9.61961C7.90195 9.61961 4.15403 8.52536 0.944458 6.61963" stroke="#F5C000" stroke-opacity="0" stroke-width="3.7"/>
+            <animateTransform
+                attributeName="transform"
+                begin="0s"
+                dur="5s"
+                type="rotate"
+                from="0 29.5 29.5"
+                to="-360 29.5 29.5"
+                repeatCount="indefinite"
+            />
+        </g>
+        <g id="green-circle">
+            <path id="Ellipse 71" d="M18.35 18.4298C20.4879 16.2764 23.2537 14.7473 26.35 14.1401" stroke="#007900" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 71_2" d="M44.6494 26.85C44.7814 27.6638 44.85 28.4989 44.85 29.35C44.85 37.9104 37.9104 44.85 29.35 44.85" stroke="#007900" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 71_3" d="M44.6494 26.85C43.4541 19.4783 37.0593 13.85 29.35 13.85C28.3236 13.85 27.3206 13.9498 26.35 14.1401" stroke="#004C00" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 71_4" d="M29.35 44.85C25.2992 44.85 21.6113 43.2961 18.85 40.7519" stroke="#004C00" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 71_5" d="M6.34998 1.85001C3.56845 4.65174 1.84998 8.51027 1.84998 12.7702C1.84998 17.2798 3.77584 21.3396 6.84998 24.172" stroke="#007900" stroke-opacity="0" stroke-width="3.7" stroke-linecap="round"/>
+            <animateTransform
+                attributeName="transform"
+                begin="0s"
+                dur="5s"
+                type="rotate"
+                from="0 29.5 29.5"
+                to="360 29.5 29.5"
+                repeatCount="indefinite"
+            />
+        </g>
+        <g id="blue-circle">
+            <path id="Ellipse 72" d="M35.85 36.2782C34.986 37.0891 33.9703 37.7403 32.85 38.1845" stroke="#2E5F7F" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 72_2" d="M22.35 22.9273C20.7976 24.6184 19.85 26.8735 19.85 29.35C19.85 31.3998 20.4991 33.2979 21.6031 34.85" stroke="#2E5F7F" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 72_3" d="M36.2782 22.85C34.5451 21.0035 32.0823 19.85 29.35 19.85C28.6639 19.85 27.9948 19.9227 27.35 20.0609" stroke="#2E5F7F" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 72_4" d="M22.35 22.9273C23.6564 21.5042 25.3912 20.4806 27.35 20.0609" stroke="#20435B" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 72_5" d="M21.603 34.85C23.3248 37.2708 26.153 38.85 29.3499 38.85C30.5859 38.85 31.7668 38.614 32.8499 38.1845" stroke="#20435B" stroke-width="3.7" stroke-linecap="round"/>
+            <path id="Ellipse 72_6" d="M2.27822 1.85001C3.87312 3.54931 4.84998 5.83558 4.84998 8.35001C4.84998 11.0823 3.69651 13.5452 1.84998 15.2782" stroke="#2E5F7F" stroke-opacity="0" stroke-width="3.7" stroke-linecap="round"/>
+            <animateTransform
+                attributeName="transform"
+                begin="0s"
+                dur="5s"
+                type="rotate"
+                from="0 29.5 29.5"
+                to="-360 29.5 29.5"
+                repeatCount="indefinite"
+            />
+        </g>
+    </g>
+</svg>

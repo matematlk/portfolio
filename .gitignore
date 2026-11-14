@@ -1,0 +1,13 @@
+# Installed packages
+node_modules
+
+# Build output
+dist
+
+# Editor and OS files
+.idea
+.vscode
+.DS_Store
+
+# Logs
+npm-debug.log*

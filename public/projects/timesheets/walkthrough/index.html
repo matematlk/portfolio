@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TimeSheets walkthrough</title>
+  <style>
+    /* Clickable version of the TimeSheets guided tour (Figma frames).
+       Click the red arrow on a card to go to the next step.
+       Arrow keys and the buttons under the frame work too. */
+    :root { --pink: #ff877e; --ink: #242424; --bg: transparent; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); font-family: system-ui, sans-serif; color: var(--ink); }
+
+    /* Fills the iframe it is embedded in: frame on top, buttons underneath */
+    html, body { height: 100%; }
+    .tour { height: 100%; display: flex; flex-direction: column; gap: 8px; padding: 4px; }
+    .stage-wrap { flex: 1; min-height: 0; container-type: size; display: grid; place-items: center; }
+
+    /* Same shape as the Figma frames (1915 x 943), as big as fits */
+    .stage {
+      position: relative; aspect-ratio: 1915 / 943; width: min(100cqw, 100cqh * 1915 / 943);
+      overflow: hidden; border-radius: 10px; background: #eee;
+    }
+    .stage img { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .25s ease; }
+    .stage img.hidden { opacity: 0; }
+
+    /* Invisible button sitting on top of the red arrow in each card */
+    .hotspot {
+      position: absolute; transform: translate(-50%, -50%);
+      min-width: 28px; min-height: 28px; border: 0; padding: 0; border-radius: 50%;
+      background: transparent; cursor: pointer;
+    }
+    .hotspot:hover, .hotspot:focus-visible { outline: 3px solid rgb(255 135 126 / .55); outline-offset: 2px; }
+    .hotspot.pulse { animation: pulse 1.6s ease-out infinite; }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgb(255 135 126 / .7); }
+      100% { box-shadow: 0 0 0 18px rgb(255 135 126 / 0); }
+    }
+
+    /* Frames with no card (cover, plain screen, saved result): click anywhere */
+    .cover-click { position: absolute; inset: 0; border: 0; background: transparent; cursor: pointer; }
+    .hint {
+      position: absolute; left: 50%; bottom: 6%; transform: translateX(-50%);
+      background: var(--pink); color: #fff; font-weight: 600; font-size: 14px;
+      padding: 6px 14px; border-radius: 999px; pointer-events: none; white-space: nowrap;
+    }
+
+    /* Controls under the frame, handy on small screens where the arrow is tiny */
+    .controls { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 14px; }
+    .controls button {
+      border: 0; background: var(--pink); color: #fff; font: inherit; font-weight: 600;
+      width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+    }
+    .controls button:disabled { opacity: .35; cursor: default; }
+    .count { min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .stage img { transition: none; }
+      .hotspot.pulse { animation: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="tour">
+  <div class="stage-wrap">
+    <div class="stage" id="stage">
+      <img id="imgA" alt="">
+      <img id="imgB" alt="" class="hidden">
+    </div>
+  </div>
+  <div class="controls">
+    <button id="prev" aria-label="Previous step">‹</button>
+    <span class="count" id="count" aria-live="polite"></span>
+    <button id="next" aria-label="Next step">›</button>
+  </div>
+</div>
+
+<script>
+  // One entry per frame, in order.
+  // arrow: centre of the red arrow button, in Figma pixels (frame is 1915 x 943).
+  // No arrow means the frame has no card, so clicking anywhere moves on.
+  const W = 1915, H = 943
+  const steps = [
+    { src: '00-cover.svg', label: 'TimeSheets guide', hint: 'click to start' },
+    { src: '01-timesheets.svg', label: 'The TimeSheets page', hint: 'click to begin the tour' },
+    { src: '02-date-selector.svg', label: 'Date selector', arrow: [335, 315] },
+    { src: '03-project-view.svg', label: 'Project view', arrow: [709, 323] },
+    { src: '04-rnd-section.svg', label: 'R&D section', arrow: [786, 350] },
+    { src: '05-week-tally.svg', label: 'Week tally', arrow: [1841, 292] },
+    { src: '06-page-actions.svg', label: 'Page actions', arrow: [296, 466] },
+    { src: '07-favorite-projects.svg', label: 'Favorite projects', arrow: [1861, 455] },
+    { src: '08-your-week.svg', label: 'Your week', arrow: [1808, 330] },
+    { src: '09-day-card.svg', label: 'Day card', arrow: [1023, 668] },
+    { src: '10-header.svg', label: 'Header', arrow: [1045, 561] },
+    { src: '11-project-container.svg', label: 'Project container', arrow: [1005, 723] },
+    { src: '12-entry-card.svg', label: 'Entry card', arrow: [1525, 552] },
+    { src: '13-entry-header.svg', label: 'Entry header', arrow: [1452, 661] },
+    { src: '14-entry-content.svg', label: 'Entry content', arrow: [1452, 564] },
+    { src: '15-actions.svg', label: 'Actions', arrow: [1452, 537] },
+    { src: '16-editing.svg', label: 'Editing', arrow: [1451, 577] },
+    { src: '17-editing-saved.svg', label: 'Editing: adding a tag and R&D', arrow: [1451, 541] },
+    { src: '18-saved.svg', label: 'Changes saved', hint: 'click to continue' },
+    { src: '19-finish.svg', label: 'Finish', arrow: [1467, 220], last: true },
+  ]
+  const HIT = 48 // size of the clickable area around the arrow, in Figma pixels
+
+  const stage = document.getElementById('stage')
+  const imgs = [document.getElementById('imgA'), document.getElementById('imgB')]
+  const prevBtn = document.getElementById('prev')
+  const nextBtn = document.getElementById('next')
+  const count = document.getElementById('count')
+  let current = 0, front = 0, overlay = null
+
+  // Load every frame in the background so clicking feels instant
+  steps.forEach((s) => { new Image().src = s.src })
+
+  function go(i) {
+    current = (i + steps.length) % steps.length
+    const step = steps[current]
+
+    // Crossfade: put the new frame on the hidden image, then swap
+    const back = 1 - front
+    imgs[back].src = step.src
+    imgs[back].alt = step.label
+    const show = () => {
+      imgs[back].classList.remove('hidden')
+      imgs[front].classList.add('hidden')
+      front = back
+    }
+    if (imgs[back].complete) show(); else imgs[back].onload = show
+
+    if (overlay) overlay.remove()
+    overlay = step.arrow ? makeHotspot(step) : makeCoverClick(step)
+    stage.append(overlay)
+
+    count.textContent = `${current + 1} / ${steps.length}`
+    prevBtn.disabled = current === 0
+    nextBtn.setAttribute('aria-label', step.last ? 'Start over' : 'Next step')
+    nextBtn.textContent = step.last ? '↺' : '›'
+  }
+
+  function makeHotspot(step) {
+    const b = document.createElement('button')
+    b.className = 'hotspot' + (current === 2 ? ' pulse' : '') // pulse on the first card so people find the arrow
+    b.style.left = (step.arrow[0] / W * 100) + '%'
+    b.style.top = (step.arrow[1] / H * 100) + '%'
+    b.style.width = (HIT / W * 100) + '%'
+    b.style.height = 'auto'
+    b.style.aspectRatio = '1'
+    b.setAttribute('aria-label', step.last ? 'Start over' : `Next: ${steps[current + 1].label}`)
+    b.onclick = () => go(current + 1)
+    return b
+  }
+
+  function makeCoverClick(step) {
+    const b = document.createElement('button')
+    b.className = 'cover-click'
+    b.setAttribute('aria-label', step.hint)
+    b.innerHTML = `<span class="hint">${step.hint}</span>`
+    b.onclick = () => go(current + 1)
+    return b
+  }
+
+  prevBtn.onclick = () => go(current - 1)
+  nextBtn.onclick = () => go(current + 1)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') go(current + 1)
+    if (e.key === 'ArrowLeft' && current > 0) go(current - 1)
+    // When shown in a popup, Esc pressed in here asks the page to close it
+    if (e.key === 'Escape' && window.parent !== window) window.parent.postMessage('popup:close', '*')
+  })
+
+  go(0)
+</script>
+</body>
+</html>
