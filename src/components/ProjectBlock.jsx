@@ -3,9 +3,6 @@ import SubmarineWave from './SubmarineWave.jsx'
 import FontTester from './FontTester.jsx'
 import PopupEmbed from './PopupEmbed.jsx'
 import CustomButton from './CustomButton.jsx'
-import { useRef } from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 // Draws one block of a project page. Block types are listed in src/data/projects.js.
 export default function ProjectBlock({ block }) {
@@ -75,5 +72,27 @@ export default function ProjectBlock({ block }) {
     return <CustomButton block={block} />
   }
 
+  // YouTube video, from any YouTube link (youtu.be/..., watch?v=..., shorts/...)
+  if (block.type === 'youtube') {
+    const id = youtubeId(block.src)
+    if (!id) return <div className="image-ph block-video">[check the YouTube link]</div>
+    return (
+        <iframe
+            className="block-youtube"
+            src={`https://www.youtube-nocookie.com/embed/${id}?rel=0`}
+            title={block.title || 'YouTube video'}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+        />
+    )
+  }
+
   return null
+}
+
+// Pulls the video id out of a YouTube link. YouTube won't let its normal
+// links be embedded, only https://www.youtube.com/embed/<id>, so the id is needed.
+function youtubeId(link = '') {
+  const m = link.match(/(?:youtu\.be\/|[?&]v=|\/(?:embed|shorts|live)\/)([\w-]{11})/)
+  return m ? m[1] : null
 }

@@ -196,7 +196,7 @@ export const projects = [
         dropCap: true,
         text: '“The teenage girl” is my personal blog, and although I am no longer a teenage girl, I will never stop feeling that way inside which I think justifies this being the title of my corner of the Internet. I wanted it to look exactly like the person writing it, which is the same rule I followed for this portfolio.',
       },
-      { type: 'video', src: '/projects/personal-blog/blog-demo.mov' },
+      { type: 'youtube', src: 'https://youtu.be/EGHkZzWSXiI', title: 'Demo of the teenage girl blog' },
       {
         type: 'button',
         src: 'https://matematlk.github.io/the-teenage-girl/',
