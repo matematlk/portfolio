@@ -1,0 +1,14 @@
+// Cloudflare Workers settings for the portfolio.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio",
+  "compatibility_date": "2026-11-13",
+  "assets": {
+    // Where `npm run build` (vite build) puts the site
+    "directory": "./dist",
+    // Any address that isn't a real file gets index.html, so React Router
+    // can show /projects/timesheets and friends. This replaces public/_redirects.
+    "not_found_handling": "single-page-application"
+  },
+  "observability": { "enabled": true }
+}
