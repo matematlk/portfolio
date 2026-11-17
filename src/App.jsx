@@ -8,6 +8,7 @@ import ProjectDetail from './pages/ProjectDetail.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Resume from './pages/Resume.jsx'
 
 // Jumps back to the top of the page whenever the URL changes.
 function ScrollToTop() {
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+            <Route path="/resume" element={<Resume />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

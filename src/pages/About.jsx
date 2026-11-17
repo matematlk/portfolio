@@ -3,6 +3,7 @@ import PageHeader from '../components/PageHeader.jsx'
 import Marquee from '../components/Marquee.jsx'
 import ProjectImage from '../components/ProjectImage.jsx'
 import { site } from '../data/site.js'
+import { Link } from 'react-router-dom'
 
 // Photo of Mathilde inside a phone frame. Add the photo as public/images/me.jpg.
 function Photo() {
@@ -22,9 +23,10 @@ export default function About() {
       <PageHeader title="about" />
       <div className="about-grid">
         <div className="about-col">
-          <p className="bubble bubble-yellow">
-            I have been known to work with many-a languages and frameworks: C++, INUX, JS, C#, ASP.NET, SQL to name a few, and I would love to learn many new ones!
-          </p>
+            <p className="bubble bubble-yellow">
+                I have been known to work with many-a languages and frameworks: C++, INUX, JS, C#, ASP.NET, SQL to name a few, and I would love to learn many new ones!
+                {' '}The full list is in my <Link to="/resume">résumé</Link>.
+            </p>
           <p className="bubble bubble-yellow bubble-indent">
             If any of this sounds interesting, send me a pigeon or email me at{' '}
             <a href={`mailto:${site.email}`}>{site.email}</a> if that’s easier

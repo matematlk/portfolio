@@ -8,7 +8,8 @@ import { site } from '../data/site.js'
 const messages = [
   { me: true, body: 'So how do I contact you?' },
   { body: <>Here is my <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn!</a></> },
-  { body: <>Otherwise, my email is <a href={`mailto:${site.email}`}>{site.email}</a></> },
+  { body: <>Otherwise, my email is <a href={`mailto:${site.email}`}>{site.email}</a></> }, 
+    { body: <>And if you need it, here is my <Link to="/resume">résumé</Link></> },
   { body: "Don't hesitate to contact me!" },
 ]
 

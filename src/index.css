@@ -19,7 +19,7 @@
 @font-face {
   font-family: 'Subno-type';
   src: url('/projects/subno-type/subno-type.ttf') format('truetype');
-  font-display: swap; 
+  font-display: swap;
 }
 
 @font-face {
@@ -162,8 +162,8 @@ img { display: block; max-width: 100%; }
 .chat-header { flex: none; display: flex; align-items: center; justify-content: space-between; height: 5em; padding: 0 2.75em; background: var(--blue); }
 .chat-header h1 { margin: 0 auto 0 1em; font: 800 2.2em var(--display); color: #5f8392; }
 .chat-avatar { align-self: flex-start; margin-top: 0.4em; }
-.chat { flex: 1; display: flex; flex-direction: column; gap: 1.25em; padding: 3.25em 3em 2em; }
-.msg { align-self: flex-start; max-width: 90%; padding: 0.7em 1.2em; border-radius: 1.5em; background: #dcdcdc; color: #4a5568; font-size: 1.6em; font-weight: 500; opacity: 0; transform: translateY(40px); animation: up 0.5s var(--delay) ease-out forwards; overflow-wrap: anywhere; }
+.chat { flex: 1; display: flex; flex-direction: column; gap: 0.9em; padding: 2.25em 3em 1.5em; }
+.msg { align-self: flex-start; max-width: 90%; padding: 0.7em 1.2em; border-radius: 1.5em; background: #dcdcdc; color: #4a5568; font-size: 1.5em; font-weight: 500; opacity: 0; transform: translateY(40px); animation: up 0.5s var(--delay) ease-out forwards; overflow-wrap: anywhere; }
 .msg-me { align-self: flex-end; background: var(--pink); color: #fff; }
 .msg a { text-decoration: underline; color: var(--blue-deep); }
 @keyframes up { to { opacity: 1; transform: none; } }
@@ -218,6 +218,29 @@ img { display: block; max-width: 100%; }
 
 /* YouTube video (block type 'youtube'): add this to index.css */
 .block-youtube { width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: 12px; background: var(--ink); }
+
+
+/* Résumé page: add this to index.css */
+.resume-actions { display: flex; flex-wrap: wrap; gap: 0.75em; justify-content: center; margin-bottom: 1em; }
+
+/* Second button style: pink outline instead of filled */
+.custom-button-outline { background: transparent; color: #ff877e; box-shadow: inset 0 0 0 2px #ff877e; }
+.custom-button-outline:hover { background: #ff877e; color: #fff; }
+
+/* Tall enough to read a whole letter-size page */
+.resume-pdf {
+  display: block; width: 100%; max-width: 900px; height: 85vh; margin: 0 auto;
+  border: 0; border-radius: 12px; background: #fff;
+}
+
+/* Phones can't show PDFs inside a page: show a picture of it instead */
+.resume-preview { display: none; }
+.resume-preview img { display: block; width: 100%; border-radius: 12px; box-shadow: 0 4px 16px rgb(0 0 0 / .15); }
+
+@media (max-width: 700px) {
+  .resume-pdf { display: none; }
+  .resume-preview { display: block; }
+}
 
 
 /* Font tester */
@@ -342,7 +365,13 @@ img { display: block; max-width: 100%; }
   .about-grid { grid-template-columns: 1fr; }
   .phone { justify-self: center; order: -1; }
   .bubble-indent { margin-left: 0; }
-  .chat { padding: 3em 1.25em 1.5em; }
+  /* Contact: a bit taller window and smaller bubbles so the whole chat fits without scrolling */
+  .window.window-chat { --window-height: 88vh; }
+  .chat-header { height: 4.5em; padding: 0 1.25em; }
+  .chat-header h1 { font-size: 1.8em; }
+  .chat { gap: 0.6em; padding: 2em 1em 1em; }
+  .msg { font-size: 1.15em; max-width: 92%; }
+  .chat-input { padding: 0.75em 1.25em; }
   .project-name { font-size: 1.1em; overflow-wrap: anywhere; }
   .block-text { text-align: left; }
   .block-image-text { grid-template-columns: 1fr; }
